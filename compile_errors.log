@@ -1,0 +1,449 @@
+In file included from radian_trx.h:94,
+                 from main.c:2:
+utils.c:11:13: error: conflicting types for ‘T_BOOL’; have ‘int’
+   11 | typedef int T_BOOL;    // Define T_BOOL if it's not defined elsewhere
+      |             ^~~~~~
+radian_trx.h:66:23: note: previous declaration of ‘T_BOOL’ with type ‘T_BOOL’ {aka ‘unsigned char’}
+   66 | typedef unsigned char T_BOOL;       //1 octets
+      |                       ^~~~~~
+utils.c:12: warning: "TRUE" redefined
+   12 | #define TRUE 1
+      | 
+In file included from radian_trx.h:14:
+wiringPi.h:31: note: this is the location of the previous definition
+   31 | #  define       TRUE    (1==1)
+      | 
+utils.c:13: warning: "FALSE" redefined
+   13 | #define FALSE 0
+      | 
+wiringPi.h:32: note: this is the location of the previous definition
+   32 | #  define       FALSE   (!TRUE)
+      | 
+In file included from radian_trx.h:97:
+cc1101.c: In function ‘cc1101_configureRF_0’:
+cc1101.c:233:21: error: ‘frequence’ undeclared (first use in this function)
+  233 | halRfWriteReg(FREQ0,frequence a ajuster en fonction de votre CC1101 0xB7);   //rasmobo 810 819.5 OK
+      |                     ^~~~~~~~~
+cc1101.c:233:21: note: each undeclared identifier is reported only once for each function it appears in
+cc1101.c:233:30: error: expected ‘)’ before ‘a’
+  233 | halRfWriteReg(FREQ0,frequence a ajuster en fonction de votre CC1101 0xB7);   //rasmobo 810 819.5 OK
+      |              ~               ^~
+      |                              )
+cc1101.c: In function ‘scenario_releve’:
+cc1101.c:664:48: error: ‘année’ undeclared (first use in this function)
+  664 |     TS_len_u8=Make_Radian_Master_req(txbuffer, année , serial );
+      |                                                ^~~~~
+cc1101.c:664:56: error: ‘serial’ undeclared (first use in this function)
+  664 |     TS_len_u8=Make_Radian_Master_req(txbuffer, année , serial );
+      |                                                        ^~~~~~
+cc1101.c:674:57: error: ‘TX_LOOP_OUT’ undeclared (first use in this function)
+  674 |             while((CC1101_status_state == 0x02) && (tmo<TX_LOOP_OUT))                                   //in TX
+      |                                                         ^~~~~~~~~~~
+main.c: In function ‘main’:
+main.c:6:5: warning: implicit declaration of function ‘radian_init’ [-Wimplicit-function-declaration]
+    6 |     radian_init();
+      |     ^~~~~~~~~~~
+main.c:10:9: warning: implicit declaration of function ‘radian_read’ [-Wimplicit-function-declaration]
+   10 |         radian_read();
+      |         ^~~~~~~~~~~
+radian_trx.c:5:24: warning: extra tokens at end of #include directive
+    5 | #include "radian_trx.h"s
+      |                        ^
+In file included from radian_trx.h:94,
+                 from radian_trx.c:5:
+utils.c:11:13: error: conflicting types for ‘T_BOOL’; have ‘int’
+   11 | typedef int T_BOOL;    // Define T_BOOL if it's not defined elsewhere
+      |             ^~~~~~
+radian_trx.h:66:23: note: previous declaration of ‘T_BOOL’ with type ‘T_BOOL’ {aka ‘unsigned char’}
+   66 | typedef unsigned char T_BOOL;       //1 octets
+      |                       ^~~~~~
+utils.c:12: warning: "TRUE" redefined
+   12 | #define TRUE 1
+      | 
+In file included from radian_trx.h:14:
+wiringPi.h:31: note: this is the location of the previous definition
+   31 | #  define       TRUE    (1==1)
+      | 
+utils.c:13: warning: "FALSE" redefined
+   13 | #define FALSE 0
+      | 
+wiringPi.h:32: note: this is the location of the previous definition
+   32 | #  define       FALSE   (!TRUE)
+      | 
+In file included from radian_trx.h:97:
+cc1101.c: In function ‘cc1101_configureRF_0’:
+cc1101.c:233:21: error: ‘frequence’ undeclared (first use in this function)
+  233 | halRfWriteReg(FREQ0,frequence a ajuster en fonction de votre CC1101 0xB7);   //rasmobo 810 819.5 OK
+      |                     ^~~~~~~~~
+cc1101.c:233:21: note: each undeclared identifier is reported only once for each function it appears in
+cc1101.c:233:30: error: expected ‘)’ before ‘a’
+  233 | halRfWriteReg(FREQ0,frequence a ajuster en fonction de votre CC1101 0xB7);   //rasmobo 810 819.5 OK
+      |              ~               ^~
+      |                              )
+cc1101.c: In function ‘scenario_releve’:
+cc1101.c:664:48: error: ‘année’ undeclared (first use in this function)
+  664 |     TS_len_u8=Make_Radian_Master_req(txbuffer, année , serial );
+      |                                                ^~~~~
+cc1101.c:664:56: error: ‘serial’ undeclared (first use in this function)
+  664 |     TS_len_u8=Make_Radian_Master_req(txbuffer, année , serial );
+      |                                                        ^~~~~~
+cc1101.c:674:57: error: ‘TX_LOOP_OUT’ undeclared (first use in this function)
+  674 |             while((CC1101_status_state == 0x02) && (tmo<TX_LOOP_OUT))                                   //in TX
+      |                                                         ^~~~~~~~~~~
+cc1101.c:5:1: error: unknown type name ‘uint8_t’
+    5 | uint8_t RF_config_u8=0xFF;
+      | ^~~~~~~
+cc1101.c:1:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+  +++ |+#include <stdint.h>
+    1 |  /*  the radian_trx SW shall not be distributed  nor used for commercial product*/
+cc1101.c:6:1: error: unknown type name ‘uint8_t’
+    6 | uint8_t RF_Test_u8=0;
+      | ^~~~~~~
+cc1101.c:6:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:8:1: error: unknown type name ‘uint8_t’
+    8 | uint8_t PA_Test[] =  {0xC0,0xC8,0x85,0x60,0x34,0x1D,0x0E,0x12,};
+      | ^~~~~~~
+cc1101.c:8:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:10:1: error: unknown type name ‘uint8_t’
+   10 | uint8_t PA[] =  {0x60,0x00,0x00,0x00,0x00,0x00,0x00,0x00,};
+      | ^~~~~~~
+cc1101.c:10:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:12:1: error: unknown type name ‘uint8_t’
+   12 | uint8_t CC1101_status_state=0;
+      | ^~~~~~~
+cc1101.c:12:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:13:1: error: unknown type name ‘uint8_t’
+   13 | uint8_t CC1101_status_FIFO_FreeByte=0;
+      | ^~~~~~~
+cc1101.c:13:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:14:1: error: unknown type name ‘uint8_t’
+   14 | uint8_t CC1101_status_FIFO_ReadByte=0;
+      | ^~~~~~~
+cc1101.c:14:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:15:1: error: unknown type name ‘uint8_t’
+   15 | uint8_t debug_out=1;
+      | ^~~~~~~
+cc1101.c:15:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:74:1: error: unknown type name ‘uint8_t’
+   74 | uint8_t halRfWriteReg(uint8_t reg_addr, uint8_t value)
+      | ^~~~~~~
+cc1101.c:74:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:74:23: error: unknown type name ‘uint8_t’
+   74 | uint8_t halRfWriteReg(uint8_t reg_addr, uint8_t value)
+      |                       ^~~~~~~
+cc1101.c:74:23: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:74:41: error: unknown type name ‘uint8_t’
+   74 | uint8_t halRfWriteReg(uint8_t reg_addr, uint8_t value)
+      |                                         ^~~~~~~
+cc1101.c:74:41: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:104:1: error: unknown type name ‘uint8_t’
+  104 | uint8_t halRfReadReg(uint8_t spi_instr)
+      | ^~~~~~~
+cc1101.c:104:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:104:22: error: unknown type name ‘uint8_t’
+  104 | uint8_t halRfReadReg(uint8_t spi_instr)
+      |                      ^~~~~~~
+cc1101.c:104:22: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:126:22: error: unknown type name ‘uint8_t’
+  126 | void SPIReadBurstReg(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
+      |                      ^~~~~~~
+cc1101.c:126:22: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:126:41: error: unknown type name ‘uint8_t’
+  126 | void SPIReadBurstReg(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
+      |                                         ^~~~~~~
+cc1101.c:126:41: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:126:56: error: unknown type name ‘uint8_t’
+  126 | void SPIReadBurstReg(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
+      |                                                        ^~~~~~~
+cc1101.c:126:56: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:142:23: error: unknown type name ‘uint8_t’
+  142 | void SPIWriteBurstReg(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
+      |                       ^~~~~~~
+cc1101.c:142:23: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:142:42: error: unknown type name ‘uint8_t’
+  142 | void SPIWriteBurstReg(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
+      |                                          ^~~~~~~
+cc1101.c:142:42: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:142:57: error: unknown type name ‘uint8_t’
+  142 | void SPIWriteBurstReg(uint8_t spi_instr, uint8_t *pArr, uint8_t len)
+      |                                                         ^~~~~~~
+cc1101.c:142:57: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:173:17: error: unknown type name ‘uint8_t’
+  173 | void CC1101_CMD(uint8_t spi_instr)
+      |                 ^~~~~~~
+cc1101.c:173:17: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c: In function ‘cc1101_reset’:
+cc1101.c:201:9: warning: implicit declaration of function ‘CC1101_CMD’ [-Wimplicit-function-declaration]
+  201 |         CC1101_CMD(SRES);       //GDO0 pin should output a clock signal with a frequency of CLK_XOSC/192.
+      |         ^~~~~~~~~~
+cc1101.c:204:5: warning: implicit declaration of function ‘delay’ [-Wimplicit-function-declaration]
+  204 |     delay(1); //1ms for getting chip to reset properly
+      |     ^~~~~
+cc1101.c: In function ‘cc1101_configureRF_0’:
+cc1101.c:217:1: warning: implicit declaration of function ‘halRfWriteReg’ [-Wimplicit-function-declaration]
+  217 | halRfWriteReg(IOCFG2,0x0D);  //GDO2 Output Pin Configuration : Serial Data Output
+      | ^~~~~~~~~~~~~
+cc1101.c:233:21: error: ‘frequence’ undeclared (first use in this function)
+  233 | halRfWriteReg(FREQ0,frequence a ajuster en fonction de votre CC1101 0xB7);   //rasmobo 810 819.5 OK
+      |                     ^~~~~~~~~
+cc1101.c:233:21: note: each undeclared identifier is reported only once for each function it appears in
+cc1101.c:233:30: error: expected ‘)’ before ‘a’
+  233 | halRfWriteReg(FREQ0,frequence a ajuster en fonction de votre CC1101 0xB7);   //rasmobo 810 819.5 OK
+      |              ~               ^~
+      |                              )
+cc1101.c:260:1: warning: implicit declaration of function ‘SPIWriteBurstReg’ [-Wimplicit-function-declaration]
+  260 | SPIWriteBurstReg(PATABLE_ADDR, PA, 8);
+      | ^~~~~~~~~~~~~~~~
+cc1101.c: In function ‘echo_cc1101_MARCSTATE’:
+cc1101.c:265:3: error: unknown type name ‘int8_t’
+  265 |   int8_t m_state;
+      |   ^~~~~~
+cc1101.c:265:3: note: ‘int8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:266:13: warning: implicit declaration of function ‘halRfReadReg’ [-Wimplicit-function-declaration]
+  266 |   m_state = halRfReadReg(MARCSTATE_ADDR);
+      |             ^~~~~~~~~~~~
+cc1101.c:267:3: warning: implicit declaration of function ‘echo_debug’ [-Wimplicit-function-declaration]
+  267 |   echo_debug(debug_out,"MARCSTATE : raw:0x%02X  0x%02X",m_state,m_state&0x1F );
+      |   ^~~~~~~~~~
+cc1101.c: In function ‘cc1101_init’:
+cc1101.c:313:9: warning: implicit declaration of function ‘wiringPiSPISetup’ [-Wimplicit-function-declaration]
+  313 |    if ((wiringPiSPISetup (0, 100000)) < 0)        // channel 0 100khz   min 500khz ds la doc ?
+      |         ^~~~~~~~~~~~~~~~
+cc1101.c:316:6: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+  316 |      printf ("Can't open the SPI bus");
+      |      ^~~~~~
+cc1101.c:1:1: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+  +++ |+#include <stdio.h>
+    1 |  /*  the radian_trx SW shall not be distributed  nor used for commercial product*/
+cc1101.c:316:6: warning: incompatible implicit declaration of built-in function ‘printf’ [-Wbuiltin-declaration-mismatch]
+  316 |      printf ("Can't open the SPI bus");
+      |      ^~~~~~
+cc1101.c:316:6: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+cc1101.c:317:6: warning: implicit declaration of function ‘exit’ [-Wimplicit-function-declaration]
+  317 |      exit (EXIT_FAILURE) ;
+      |      ^~~~
+cc1101.c:1:1: note: include ‘<stdlib.h>’ or provide a declaration of ‘exit’
+  +++ |+#include <stdlib.h>
+    1 |  /*  the radian_trx SW shall not be distributed  nor used for commercial product*/
+cc1101.c:317:6: warning: incompatible implicit declaration of built-in function ‘exit’ [-Wbuiltin-declaration-mismatch]
+  317 |      exit (EXIT_FAILURE) ;
+      |      ^~~~
+cc1101.c:317:6: note: include ‘<stdlib.h>’ or provide a declaration of ‘exit’
+cc1101.c:317:12: error: ‘EXIT_FAILURE’ undeclared (first use in this function)
+  317 |      exit (EXIT_FAILURE) ;
+      |            ^~~~~~~~~~~~
+cc1101.c:317:12: note: ‘EXIT_FAILURE’ is defined in header ‘<stdlib.h>’; did you forget to ‘#include <stdlib.h>’?
+cc1101.c: At top level:
+cc1101.c:326:1: error: unknown type name ‘int8_t’
+  326 | int8_t cc1100_rssi_convert2dbm(uint8_t Rssi_dec)
+      | ^~~~~~
+cc1101.c:326:1: note: ‘int8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:326:32: error: unknown type name ‘uint8_t’
+  326 | int8_t cc1100_rssi_convert2dbm(uint8_t Rssi_dec)
+      |                                ^~~~~~~
+cc1101.c:326:32: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c: In function ‘cc1101_rec_mode’:
+cc1101.c:344:9: error: unknown type name ‘uint8_t’
+  344 |         uint8_t marcstate;
+      |         ^~~~~~~
+cc1101.c:344:9: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c: In function ‘show_cc1101_registers_settings’:
+cc1101.c:366:17: error: unknown type name ‘uint8_t’
+  366 |                 uint8_t config_reg_verify[CFG_REGISTER],Patable_verify[8];
+      |                 ^~~~~~~
+cc1101.c:366:17: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:367:17: error: unknown type name ‘uint8_t’
+  367 |                 uint8_t i ;
+      |                 ^~~~~~~
+cc1101.c:367:17: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:369:17: warning: implicit declaration of function ‘SPIReadBurstReg’ [-Wimplicit-function-declaration]
+  369 |                 SPIReadBurstReg(0,config_reg_verify,CFG_REGISTER);                      //reads all 47 config register from cc1100      "359.63us"
+      |                 ^~~~~~~~~~~~~~~
+cc1101.c: At top level:
+cc1101.c:394:1: error: unknown type name ‘uint8_t’
+  394 | uint8_t is_look_like_radian_frame(uint8_t* buffer, size_t len)
+      | ^~~~~~~
+cc1101.c:394:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:394:35: error: unknown type name ‘uint8_t’
+  394 | uint8_t is_look_like_radian_frame(uint8_t* buffer, size_t len)
+      |                                   ^~~~~~~
+cc1101.c:394:35: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:394:52: error: unknown type name ‘size_t’
+  394 | uint8_t is_look_like_radian_frame(uint8_t* buffer, size_t len)
+      |                                                    ^~~~~~
+cc1101.c:1:1: note: ‘size_t’ is defined in header ‘<stddef.h>’; did you forget to ‘#include <stddef.h>’?
+  +++ |+#include <stddef.h>
+    1 |  /*  the radian_trx SW shall not be distributed  nor used for commercial product*/
+cc1101.c:406:1: error: unknown type name ‘uint8_t’
+  406 | uint8_t cc1101_check_packet_received(void)
+      | ^~~~~~~
+cc1101.c:406:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c: In function ‘cc1101_check_packet_received’:
+cc1101.c:408:3: error: unknown type name ‘uint8_t’
+  408 |   uint8_t rxBuffer[100];
+      |   ^~~~~~~
+cc1101.c:408:3: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:409:3: error: unknown type name ‘uint8_t’
+  409 |   uint8_t l_nb_byte,l_Rssi_dbm,l_lqi,l_freq_est,pktLen;
+      |   ^~~~~~~
+cc1101.c:409:3: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:411:13: warning: implicit declaration of function ‘digitalRead’ [-Wimplicit-function-declaration]
+  411 |         if (digitalRead(GDO0) == TRUE)
+      |             ^~~~~~~~~~~
+cc1101.c:411:25: error: ‘GDO0’ undeclared (first use in this function)
+  411 |         if (digitalRead(GDO0) == TRUE)
+      |                         ^~~~
+cc1101.c:411:34: error: ‘TRUE’ undeclared (first use in this function)
+  411 |         if (digitalRead(GDO0) == TRUE)
+      |                                  ^~~~
+cc1101.c:413:17: warning: implicit declaration of function ‘digitalWrite’ [-Wimplicit-function-declaration]
+  413 |                 digitalWrite(LED, 1);
+      |                 ^~~~~~~~~~~~
+cc1101.c:413:30: error: ‘LED’ undeclared (first use in this function)
+  413 |                 digitalWrite(LED, 1);
+      |                              ^~~
+cc1101.c:417:30: warning: implicit declaration of function ‘cc1100_rssi_convert2dbm’ [-Wimplicit-function-declaration]
+  417 |                 l_Rssi_dbm = cc1100_rssi_convert2dbm(halRfReadReg(RSSI_ADDR));
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~
+cc1101.c:430:21: warning: implicit declaration of function ‘is_look_like_radian_frame’ [-Wimplicit-function-declaration]
+  430 |                 if (is_look_like_radian_frame(rxBuffer,pktLen))
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+cc1101.c:433:20: warning: implicit declaration of function ‘print_time’ [-Wimplicit-function-declaration]
+  433 |                    print_time();
+      |                    ^~~~~~~~~~
+cc1101.c:435:20: warning: implicit declaration of function ‘show_in_hex_one_line’ [-Wimplicit-function-declaration]
+  435 |                    show_in_hex_one_line(rxBuffer,pktLen);
+      |                    ^~~~~~~~~~~~~~~~~~~~
+cc1101.c:442:17: warning: implicit declaration of function ‘fflush’ [-Wimplicit-function-declaration]
+  442 |                 fflush(stdout);
+      |                 ^~~~~~
+cc1101.c:442:24: error: ‘stdout’ undeclared (first use in this function)
+  442 |                 fflush(stdout);
+      |                        ^~~~~~
+cc1101.c:442:24: note: ‘stdout’ is defined in header ‘<stdio.h>’; did you forget to ‘#include <stdio.h>’?
+cc1101.c:447:16: error: ‘FALSE’ undeclared (first use in this function)
+  447 |         return FALSE;
+      |                ^~~~~
+cc1101.c: At top level:
+cc1101.c:450:1: error: unknown type name ‘uint8_t’
+  450 | uint8_t cc1101_wait_for_packet(int milliseconds)
+      | ^~~~~~~
+cc1101.c:450:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c: In function ‘cc1101_wait_for_packet’:
+cc1101.c:459:40: error: ‘TRUE’ undeclared (first use in this function)
+  459 |                                 return TRUE;
+      |                                        ^~~~
+cc1101.c:464:40: error: ‘FALSE’ undeclared (first use in this function)
+  464 |                                 return FALSE;
+      |                                        ^~~~~
+cc1101.c: At top level:
+cc1101.c:470:28: error: unknown type name ‘uint8_t’
+  470 | void display_meter_report (uint8_t *decoded_buffer , uint8_t size)
+      |                            ^~~~~~~
+cc1101.c:470:28: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:470:54: error: unknown type name ‘uint8_t’
+  470 | void display_meter_report (uint8_t *decoded_buffer , uint8_t size)
+      |                                                      ^~~~~~~
+cc1101.c:470:54: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:492:1: error: unknown type name ‘uint8_t’
+  492 | uint8_t decode_4bitpbit_serial(uint8_t *rxBuffer, int l_total_byte, uint8_t* decoded_buffer )
+      | ^~~~~~~
+cc1101.c:492:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:492:32: error: unknown type name ‘uint8_t’
+  492 | uint8_t decode_4bitpbit_serial(uint8_t *rxBuffer, int l_total_byte, uint8_t* decoded_buffer )
+      |                                ^~~~~~~
+cc1101.c:492:32: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:492:69: error: unknown type name ‘uint8_t’
+  492 | uint8_t decode_4bitpbit_serial(uint8_t *rxBuffer, int l_total_byte, uint8_t* decoded_buffer )
+      |                                                                     ^~~~~~~
+cc1101.c:492:69: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:554:55: error: unknown type name ‘uint8_t’
+  554 | int receive_radian_frame(int size_byte,int rx_tmo_ms ,uint8_t*rxBuffer,int rxBuffer_size)
+      |                                                       ^~~~~~~
+cc1101.c:554:55: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:651:1: error: unknown type name ‘uint8_t’
+  651 | uint8_t scenario_releve(void)
+      | ^~~~~~~
+cc1101.c:651:1: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c: In function ‘scenario_releve’:
+cc1101.c:653:5: error: unknown type name ‘uint8_t’
+  653 |     uint8_t marcstate = 0xFF;
+      |     ^~~~~~~
+cc1101.c:653:5: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:654:9: error: unknown type name ‘uint8_t’
+  654 |         uint8_t wupbuffer[] ={0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55};
+      |         ^~~~~~~
+cc1101.c:654:9: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:655:9: error: unknown type name ‘uint8_t’
+  655 |         uint8_t wup2send =77;
+      |         ^~~~~~~
+cc1101.c:655:9: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:656:9: error: unknown type name ‘uint16_t’
+  656 |         uint16_t tmo=0;
+      |         ^~~~~~~~
+cc1101.c:656:9: note: ‘uint16_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:657:9: error: unknown type name ‘uint8_t’
+  657 |         uint8_t rxBuffer[1000];
+      |         ^~~~~~~
+cc1101.c:657:9: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:659:9: error: unknown type name ‘uint8_t’
+  659 |         uint8_t meter_data[200];
+      |         ^~~~~~~
+cc1101.c:659:9: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:660:9: error: unknown type name ‘uint8_t’
+  660 |         uint8_t meter_data_size=0;
+      |         ^~~~~~~
+cc1101.c:660:9: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:662:9: error: unknown type name ‘uint8_t’
+  662 |         uint8_t txbuffer[100];
+      |         ^~~~~~~
+cc1101.c:662:9: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:663:5: error: unknown type name ‘uint8_t’
+  663 |     uint8_t TS_len_u8;
+      |     ^~~~~~~
+cc1101.c:663:5: note: ‘uint8_t’ is defined in header ‘<stdint.h>’; did you forget to ‘#include <stdint.h>’?
+cc1101.c:664:15: warning: implicit declaration of function ‘Make_Radian_Master_req’ [-Wimplicit-function-declaration]
+  664 |     TS_len_u8=Make_Radian_Master_req(txbuffer, année , serial );
+      |               ^~~~~~~~~~~~~~~~~~~~~~
+cc1101.c:664:48: error: ‘année’ undeclared (first use in this function)
+  664 |     TS_len_u8=Make_Radian_Master_req(txbuffer, année , serial );
+      |                                                ^~~~~
+cc1101.c:664:56: error: ‘serial’ undeclared (first use in this function)
+  664 |     TS_len_u8=Make_Radian_Master_req(txbuffer, année , serial );
+      |                                                        ^~~~~~
+cc1101.c:669:22: error: ‘LED’ undeclared (first use in this function)
+  669 |         digitalWrite(LED, 1);
+      |                      ^~~
+cc1101.c:674:57: error: ‘TX_LOOP_OUT’ undeclared (first use in this function)
+  674 |             while((CC1101_status_state == 0x02) && (tmo<TX_LOOP_OUT))                                   //in TX
+      |                                                         ^~~~~~~~~~~
+cc1101.c:693:49: warning: implicit declaration of function ‘show_in_hex’ [-Wimplicit-function-declaration]
+  693 |                                   if (debug_out)show_in_hex(&txbuffer[0],39);
+      |                                                 ^~~~~~~~~~~
+cc1101.c:709:10: warning: implicit declaration of function ‘receive_radian_frame’ [-Wimplicit-function-declaration]
+  709 |     if (!receive_radian_frame(0x12,150,rxBuffer,sizeof(rxBuffer))) echo_debug(debug_out,"TMO on REC\r\n");
+      |          ^~~~~~~~~~~~~~~~~~~~
+cc1101.c:715:23: warning: implicit declaration of function ‘show_in_hex_array’ [-Wimplicit-function-declaration]
+  715 |         if (debug_out)show_in_hex_array(rxBuffer, rxBuffer_size);
+      |                       ^~~~~~~~~~~~~~~~~
+cc1101.c:716:29: warning: implicit declaration of function ‘decode_4bitpbit_serial’ [-Wimplicit-function-declaration]
+  716 |             meter_data_size=decode_4bitpbit_serial(rxBuffer, rxBuffer_size,meter_data);
+      |                             ^~~~~~~~~~~~~~~~~~~~~~
+cc1101.c:720:20: warning: implicit declaration of function ‘display_meter_report’ [-Wimplicit-function-declaration]
+  720 |                    display_meter_report(meter_data,meter_data_size);
+      |                    ^~~~~~~~~~~~~~~~~~~~
+cc1101.c:722:22: warning: implicit declaration of function ‘show_in_hex_one_line_GET’ [-Wimplicit-function-declaration]
+  722 |                 else show_in_hex_one_line_GET(meter_data,meter_data_size);
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~
+utils.c: In function ‘Make_Radian_Master_req’:
+utils.c:281:3: warning: implicit declaration of function ‘memcpy’ [-Wimplicit-function-declaration]
+  281 |   memcpy(outputBuffer,synch_pattern,sizeof(synch_pattern));
+      |   ^~~~~~
+utils.c:10:1: note: include ‘<string.h>’ or provide a declaration of ‘memcpy’
+    9 | #include <stdarg.h>    // for variable arguments like echo_debug
+  +++ |+#include <string.h>
+   10 | 
+utils.c:281:3: warning: incompatible implicit declaration of built-in function ‘memcpy’ [-Wbuiltin-declaration-mismatch]
+  281 |   memcpy(outputBuffer,synch_pattern,sizeof(synch_pattern));
+      |   ^~~~~~
+utils.c:281:3: note: include ‘<string.h>’ or provide a declaration of ‘memcpy’
