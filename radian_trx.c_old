@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include <openssl/aes.h>  // For AES decryption
+#include "cc1101.h"
+#include "utils.h"
+
+int main() {
+    uint32_t serial = 482948;
+    uint8_t year = 16;  // 2016 => 16 in hex
+
+    printf("Serial: %u\n", serial);
+    printf("Year: %u\n", year);
+
+    unsigned char packet[64] = {0};
+    unsigned char response[64] = {0};
+    unsigned char decrypted[64] = {0};
+
+    // 1️⃣ Create the poll request
+    int packet_len = Make_Radian_Master_req(packet, year, serial);
+
+    // 2️⃣ Init SPI
+    spi_init();
+
+    // 3️⃣ Send request
+    spi_transfer(packet, NULL, packet_len);  // NULL for no RX buffer
+
+    // 4️⃣ Read response
+    spi_transfer(NULL, response, 64);  // NULL for no TX buffer
+
+    // 5️⃣ Close SPI
+    spi_close();
+
+    printf("Received:\n");
+    for (int i = 0; i < 16; i++) {
+        printf("%02X ", response[i]);
+    }
+    printf("\n");
+
+    // 6️⃣ Decrypt first 16 bytes of response
+    AES_KEY decrypt_key;
+    unsigned char aes_key[16];
+    memset(aes_key, 0, 16);
+    snprintf((char *)aes_key, 16, "%u%02u", serial, year);  // Key from serial/year
+
+    AES_set_decrypt_key(aes_key, 128, &decrypt_key);
+    AES_decrypt(response, decrypted, &decrypt_key);
+
+    printf("Decrypted:\n");
+    for (int i = 0; i < 16; i++) {
+        printf("%02X ", decrypted[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+

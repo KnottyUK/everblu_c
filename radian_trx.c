@@ -1,83 +1,64 @@
- /*  the radian_trx SW shall not be distributed  nor used for commercial product*/
- /*  it is exposed just to demonstrate CC1101 capability to reader water meter indexes */
- /*  there is no Warranty on radian_trx SW */
- 
-#include "radian_trx.h"s
-/**********************************************************************/
-/*                           initialization                           */
-/**********************************************************************/ 
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include <openssl/aes.h>
+#include "cc1101.h"
+#include "utils.h"
 
-void IO_init(void)
-{
-   wiringPiSetup () ;
-   pinMode (LED, OUTPUT);
-   digitalWrite (LED, 1) ;
-   pinMode (GDO2, INPUT);
-   pinMode (GDO0, INPUT);           
-   
-   cc1101_init();
-   digitalWrite (LED, 0) ;
+void parse_and_display_reading(uint8_t *decrypted) {
+    for (int i = 0; i < 15; i++) {
+        uint16_t value = (decrypted[i] << 8) | decrypted[i+1];
+        if (value >= 20000 && value <= 30000) {
+            printf("ðŸŸ¢ Possible Reading Found: %u at bytes %d-%d\n", value, i, i+1);
+        }
+    }
 }
 
-/**********************************************************************/
-/*                           MAIN                                     */
-/**********************************************************************/ 
-void display_command_help (void)
-{
-   printf("\r\ncommand list :\r\n");
-   printf("exit:x ;cc1101 version:v; read config : c\r\n");
-   printf("m:MARCSTATE a:MCSM1_val s:full_status\r\n");
-   printf("H:scenario de l'outil de reléve !\r\n");
-   printf("R:Reset CC1101\r\n\r\n");
-   
+int main() {
+    uint32_t serial = 482948; // Your physical serial
+    uint8_t year = 16;        // Last two digits of year
+
+    printf("Serial: %u\nYear: %u\n", serial, year);
+
+    spi_init();  // Init CC1101
+
+    // Build Poll Packet
+    uint8_t packet[64];
+    int packet_len = Make_Radian_Master_req(packet, year, serial);
+
+    // Send Poll
+    spi_transfer(packet, NULL, packet_len);
+
+    // Read Response
+    uint8_t response[16];
+    spi_transfer(NULL, response, 16);
+
+    printf("Received:\n");
+    for (int i = 0; i < 16; i++) {
+        printf("%02X ", response[i]);
+    }
+    printf("\n");
+
+    // Decrypt
+    AES_KEY decrypt_key;
+    uint8_t aes_key[16];
+    snprintf((char *)aes_key, 17, "%u%02u", serial, year);
+
+    AES_set_decrypt_key(aes_key, 128, &decrypt_key);
+
+    uint8_t decrypted[16];
+    AES_decrypt(response, decrypted, &decrypt_key);
+
+    printf("Decrypted:\n");
+    for (int i = 0; i < 16; i++) {
+        printf("%02X ", decrypted[i]);
+    }
+    printf("\n");
+
+    // Auto-Parse
+    parse_and_display_reading(decrypted);
+
+    spi_close();
+    return 0;
 }
 
-int main(int argc, char *argv[])
-{ 
-  char c_command;
-  uint8_t ret8;
-  
-  fflush(stdout);
-  IO_init();
- 
-  //printf("argc=%i\r\n",argc);
-  //printf("argv=%i\r\n",argv[0]);
-  if (argc == 2) // if one parameters 
-  {
-	  debug_out=0;
-	  ret8=scenario_releve();
-	  if (ret8 < 30)
-	   {
-	      sleep(3);
-		  ret8=scenario_releve();
-	      if (ret8 < 30)
-		  {
-		    sleep(3);
-		    ret8=scenario_releve();
-		  }
-	   }
-	  //test_rx();
-	  return 0;
-  }	  
-  if (debug_out)printf("raspian radian trx builded:%s %s\r\n",DateOFCompil,TimeOFCompil);  
-  if (debug_out)display_command_help();
-  c_command = getch();
-  while (c_command != 'x')
-  {
-    switch (c_command)
-	{
-	   case 'a': printf("MCSM1: 0x%02X\r\n", halRfReadReg(MCSM1));break;
-	   case 'H': ret8=scenario_releve(); break;  //scenario de l'outil de reléve !	   
-	   case 'R': cc1101_reset();break;
-	   case 's': echo_cc1101_full_status();break;
-	   case 'm': echo_cc1101_MARCSTATE(); break;
-	   case 'c': show_cc1101_registers_settings(); break;
-	   case 'v': echo_cc1101_version(); break;
-	   case '?': display_command_help(); break;
-	   default : break;
-    } //switch c_command
-    c_command = getch();
-  }// while command
-
-  return 0;
-}
